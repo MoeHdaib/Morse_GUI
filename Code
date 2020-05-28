@@ -1,9 +1,10 @@
+#import libraries
 import tkinter as tk
 import RPi.GPIO as GPIO
 import time
 
 
-
+#Morse code dictionary 
 CODE = {' ': ' ',
         "'": '.----.',
         '(': '-.--.-',
@@ -59,13 +60,14 @@ ledPin=14
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(ledPin,GPIO.OUT)
 
-
+#Function for a dot in morse
 def dot():
 	GPIO.output(ledPin,1)
 	time.sleep(0.2)
 	GPIO.output(ledPin,0)
 	time.sleep(0.2)
 
+#Function for a dash in morse
 def dash():
 	GPIO.output(ledPin,1)
 	time.sleep(0.5)
@@ -73,7 +75,7 @@ def dash():
 	time.sleep(0.2)
 
 
-
+#Creating the GUI
 root= tk.Tk()
 
 root.title("Morse code translator")
@@ -86,6 +88,7 @@ canvas1.create_text(200,100, text="Enter text", font=("Courier", 20))
 entry1 = tk.Entry (root) 
 canvas1.create_window(200, 140, window=entry1)
 
+#Function take the user input and translate it to morse code. It calls dot, dash functions depending on the letter symbols from the morse code dictionary 
 def morse ():  
     x1 = entry1.get()
     
